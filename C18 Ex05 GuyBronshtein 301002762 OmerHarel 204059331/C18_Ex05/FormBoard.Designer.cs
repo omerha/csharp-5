@@ -37,7 +37,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 429);
             this.Name = "FormBoard";
-            this.Text = "FormBoard";
+            this.Text = "4 in a Row !!";
             this.Load += new System.EventHandler(this.FormBoard_Load);
             this.ResumeLayout(false);
 

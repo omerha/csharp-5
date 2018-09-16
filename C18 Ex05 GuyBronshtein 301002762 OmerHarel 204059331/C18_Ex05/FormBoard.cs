@@ -153,12 +153,11 @@ namespace C18_Ex05
             if (m_Winner != 0) 
             {
                 m_Players[m_Winner - 1].Points += 1;
-                
-                ShowWinnerMessage(ref messageBoxResult);
+                UserMessages.WinnerMessage(m_Players[m_Winner - 1].PlayerName, ref messageBoxResult);
             }
             else if(m_BoardLogic.IsFullBoard())
             {
-                ShowTieMessage(ref messageBoxResult);
+                UserMessages.TieMessage(ref messageBoxResult);
             }
 
             if(messageBoxResult == DialogResult.No)
@@ -171,18 +170,6 @@ namespace C18_Ex05
                 UpdatePlayerLabels();
                 m_Winner = 0;
             }
-        }
-
-        private void ShowTieMessage(ref DialogResult io_UserChoice)
-        {
-            string message = string.Format("Tie!!{0}Anoter Round?", Environment.NewLine);
-            io_UserChoice = MessageBox.Show(message, "A Tie!", MessageBoxButtons.YesNo);
-        }
-
-        private void ShowWinnerMessage(ref DialogResult io_UserChoice)
-        {
-            string message = string.Format("{0} Won!!{1}Anoter Round?", m_Players[m_Winner - 1].PlayerName, Environment.NewLine);
-            io_UserChoice = MessageBox.Show(message, "A Win!", MessageBoxButtons.YesNo);
         }
 
         private void RunHumanVSHuman(int i_Move)

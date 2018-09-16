@@ -47,7 +47,7 @@ namespace C18_Ex05
             int cols = 0, rows = 0;
             if(!checkNamesAreFilled())
             {
-                MessageBox.Show("No names were entered", "Error");
+                UserMessages.ErrorMessage("No names were entered");
             }
             else
             {

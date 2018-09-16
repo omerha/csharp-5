@@ -61,7 +61,7 @@
             this.labelPlayer1.Location = new System.Drawing.Point(41, 35);
             this.labelPlayer1.Name = "labelPlayer1";
             this.labelPlayer1.Size = new System.Drawing.Size(54, 15);
-            this.labelPlayer1.TabIndex = 1;
+            this.labelPlayer1.TabIndex = 0;
             this.labelPlayer1.Text = "Player 1:";
             // 
             // labelRows
@@ -71,7 +71,7 @@
             this.labelRows.Location = new System.Drawing.Point(41, 149);
             this.labelRows.Name = "labelRows";
             this.labelRows.Size = new System.Drawing.Size(41, 15);
-            this.labelRows.TabIndex = 3;
+            this.labelRows.TabIndex = 0;
             this.labelRows.Text = "Rows:";
             // 
             // labelCols
@@ -81,7 +81,7 @@
             this.labelCols.Location = new System.Drawing.Point(145, 149);
             this.labelCols.Name = "labelCols";
             this.labelCols.Size = new System.Drawing.Size(34, 15);
-            this.labelCols.TabIndex = 4;
+            this.labelCols.TabIndex = 0;
             this.labelCols.Text = "Cols:";
             // 
             // labelBoardSize
@@ -91,7 +91,7 @@
             this.labelBoardSize.Location = new System.Drawing.Point(12, 124);
             this.labelBoardSize.Name = "labelBoardSize";
             this.labelBoardSize.Size = new System.Drawing.Size(70, 15);
-            this.labelBoardSize.TabIndex = 5;
+            this.labelBoardSize.TabIndex = 0;
             this.labelBoardSize.Text = "Board Size:";
             // 
             // checkBoxPlayer2
@@ -101,7 +101,7 @@
             this.checkBoxPlayer2.Location = new System.Drawing.Point(44, 63);
             this.checkBoxPlayer2.Name = "checkBoxPlayer2";
             this.checkBoxPlayer2.Size = new System.Drawing.Size(73, 19);
-            this.checkBoxPlayer2.TabIndex = 6;
+            this.checkBoxPlayer2.TabIndex = 2;
             this.checkBoxPlayer2.Text = "Player 2:";
             this.checkBoxPlayer2.UseVisualStyleBackColor = true;
             this.checkBoxPlayer2.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -111,8 +111,7 @@
             this.textBoxPlayer1.Location = new System.Drawing.Point(121, 29);
             this.textBoxPlayer1.Name = "textBoxPlayer1";
             this.textBoxPlayer1.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPlayer1.TabIndex = 7;
-         
+            this.textBoxPlayer1.TabIndex = 1;
             // 
             // textBoxPlayer2
             // 
@@ -120,7 +119,7 @@
             this.textBoxPlayer2.Location = new System.Drawing.Point(121, 63);
             this.textBoxPlayer2.Name = "textBoxPlayer2";
             this.textBoxPlayer2.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPlayer2.TabIndex = 8;
+            this.textBoxPlayer2.TabIndex = 3;
             this.textBoxPlayer2.Text = "[Computer]";
             // 
             // numericUpDownRows
@@ -139,7 +138,7 @@
             0});
             this.numericUpDownRows.Name = "numericUpDownRows";
             this.numericUpDownRows.Size = new System.Drawing.Size(31, 21);
-            this.numericUpDownRows.TabIndex = 9;
+            this.numericUpDownRows.TabIndex = 4;
             this.numericUpDownRows.Value = new decimal(new int[] {
             4,
             0,
@@ -162,7 +161,7 @@
             0});
             this.numericUpDownCols.Name = "numericUpDownCols";
             this.numericUpDownCols.Size = new System.Drawing.Size(31, 21);
-            this.numericUpDownCols.TabIndex = 10;
+            this.numericUpDownCols.TabIndex = 5;
             this.numericUpDownCols.Value = new decimal(new int[] {
             4,
             0,
@@ -175,7 +174,7 @@
             this.buttonStart.Location = new System.Drawing.Point(44, 186);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(177, 23);
-            this.buttonStart.TabIndex = 11;
+            this.buttonStart.TabIndex = 6;
             this.buttonStart.Text = "Start!";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
