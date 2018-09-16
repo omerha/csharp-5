@@ -1,6 +1,6 @@
 ﻿namespace C18_Ex05
 {
-    partial class GameSettings
+    public partial class GameSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -52,7 +53,6 @@
             this.label1.Size = new System.Drawing.Size(50, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Players:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelPlayer1
             // 
@@ -73,7 +73,6 @@
             this.labelRows.Size = new System.Drawing.Size(41, 15);
             this.labelRows.TabIndex = 3;
             this.labelRows.Text = "Rows:";
-            this.labelRows.Click += new System.EventHandler(this.label4_Click);
             // 
             // labelCols
             // 
@@ -113,6 +112,7 @@
             this.textBoxPlayer1.Name = "textBoxPlayer1";
             this.textBoxPlayer1.Size = new System.Drawing.Size(100, 20);
             this.textBoxPlayer1.TabIndex = 7;
+         
             // 
             // textBoxPlayer2
             // 
@@ -122,7 +122,6 @@
             this.textBoxPlayer2.Size = new System.Drawing.Size(100, 20);
             this.textBoxPlayer2.TabIndex = 8;
             this.textBoxPlayer2.Text = "[Computer]";
-            this.textBoxPlayer2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // numericUpDownRows
             // 
@@ -199,7 +198,6 @@
             this.Controls.Add(this.label1);
             this.Name = "GameSettings";
             this.Text = "Game Settings";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCols)).EndInit();
             this.ResumeLayout(false);
@@ -222,4 +220,3 @@
         private System.Windows.Forms.Button buttonStart;
     }
 }
-

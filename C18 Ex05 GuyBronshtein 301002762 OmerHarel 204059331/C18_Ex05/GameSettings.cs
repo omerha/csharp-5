@@ -11,30 +11,11 @@ namespace C18_Ex05
     public partial class GameSettings : Form
     {
         private FormBoard m_FormBoard;
+
         public GameSettings()
         {
             InitializeComponent();
             this.CenterToScreen();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -49,21 +30,24 @@ namespace C18_Ex05
                 textBoxPlayer2.Text = "[Computer]";
             }
         }
+
         private bool checkNamesAreFilled()
         {
             bool namesAreFilled = false;
             if (textBoxPlayer1.Text != string.Empty && textBoxPlayer2.Text != string.Empty)
             {
-               namesAreFilled= true;
+                namesAreFilled = true;
             }
+
             return namesAreFilled;
         }
+
         private void buttonStart_Click(object sender, EventArgs e)
         {
             int cols = 0, rows = 0;
             if(!checkNamesAreFilled())
             {
-                MessageBox.Show("No names were entered","Error");
+                MessageBox.Show("No names were entered", "Error");
             }
             else
             {
@@ -73,7 +57,6 @@ namespace C18_Ex05
                 m_FormBoard.ShowDialog();
                 Close();
             }
-        }
-
+        }   
     }
 }

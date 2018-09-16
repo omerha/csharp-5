@@ -9,28 +9,33 @@ namespace C18_Ex05
     public class BoardLogic
     {
         private const int k_NumOfSignsSequenceToWin = 4;
-        private Button[,] m_GameBoard = null;
         private readonly int r_BoardCols = 0;
         private readonly int r_BoardRows = 0;
+        private Button[,] m_GameBoard = null;
         private List<Button> m_ClickAbleButtons;
+
         public BoardLogic(int i_NumOfCols, int i_NumOfRow, Button[,] i_GameBoard)
         {
             r_BoardCols = i_NumOfCols;
             r_BoardRows = i_NumOfRow;
             m_GameBoard = i_GameBoard;
         }
+
         public int NumOfRows
         {
             get { return r_BoardRows; }
         }
+
         public int NumOfCols
         {
             get { return r_BoardCols; }
         }
+
         public Button[,] GameBoard
         {
             get { return m_GameBoard; }
         }
+
         public List<Button> ClickAbleButtons
         {
             get { return m_ClickAbleButtons; }
@@ -47,6 +52,7 @@ namespace C18_Ex05
                 }
             }
         }
+
         public void GameBoardUpdateAndCheckIfFull(int i_Move, char i_Sign)
         {
             bool colIsFull = false;
@@ -60,38 +66,46 @@ namespace C18_Ex05
                     {
                         colIsFull = true;
                     }
+
                     break;
                 }
             }
-            if(colIsFull)
+
+            if (colIsFull)
             {
                 SetColFull(i_Move);
             }
         }
+
         public void GetMoveFromComputer(ref int o_MoveOfPlayer)
         {
             Random rander = new Random();
             do
             {
                 o_MoveOfPlayer = rander.Next(1, r_BoardCols + 1);
-            }while (m_ClickAbleButtons[o_MoveOfPlayer - 1].Enabled == false);
-        
+            }
+            while (m_ClickAbleButtons[o_MoveOfPlayer - 1].Enabled == false);
         }
+
         public void SetColFull(int i_ColToBlock)
         {
             m_ClickAbleButtons[i_ColToBlock - 1].Enabled = false;
         }
+
         public void ClearBoard()
         {
-            foreach(Button clickAbleButton in m_ClickAbleButtons)
+            foreach (Button clickAbleButton in m_ClickAbleButtons)
             {
                 clickAbleButton.Enabled = true;
             }
-            foreach(Button cellButton in m_GameBoard)
+
+            foreach (Button cellButton in m_GameBoard)
             {
                 cellButton.Text = string.Empty;
+                cellButton.BackColor = Color.LightGray;
             }
         }
+
         public bool IsThereWinner(char i_Sign)
         {
             bool thereIsWinner = false;
@@ -110,14 +124,20 @@ namespace C18_Ex05
                 thereIsWinner = true;
             }
 
+            if (thereIsWinner)
+            {
+                FlushWinner();
+            }
+
             return thereIsWinner;
         }
+
         public bool IsFullBoard()
         {
             bool isFull = true;
-            foreach(Button clickAbleButton in m_ClickAbleButtons)
+            foreach (Button clickAbleButton in m_ClickAbleButtons)
             {
-                if(clickAbleButton.Enabled == true)
+                if (clickAbleButton.Enabled == true)
                 {
                     isFull = false;
                 }
@@ -125,6 +145,7 @@ namespace C18_Ex05
 
             return isFull;
         }
+
         private bool CheckRowsForWinner(char i_Sign)
         {
             int counterSingInRows = 0;
@@ -151,6 +172,7 @@ namespace C18_Ex05
 
             return thereIsWinner;
         }
+
         private bool CheckColsForWinner(char i_Sign)
         {
             int counterSingInCols = 0;
@@ -231,6 +253,25 @@ namespace C18_Ex05
 
             return thereIsWinner;
         }
+
+        private void FlushWinner()
+        {
+            Random rnd = new Random();
+            Color randomColor;
+            int col = 0, row = 0, counter = 0;
+            while (counter < r_BoardRows) 
+            {
+                for (row = 0; row <= counter; row++) 
+                {
+                    for (col = 0; col < r_BoardCols; col++) 
+                    {
+                        randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+                        m_GameBoard[row, col].BackColor = randomColor;
+                    }
+                }
+
+                counter++;
+            }
+        }
     }
 }
-

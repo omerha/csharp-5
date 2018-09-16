@@ -18,6 +18,7 @@ namespace C18_Ex05
         private const int k_ButtonSize = 40;
         private const int k_XStartLocation = 20;
         private const int k_YStartLocation = 20;
+        private static int s_NumOfMoves = 0;
         private int m_Winner = 0;
         private int m_CurrentYSize = 0;
         private int m_CurrentXSize = 0;
@@ -26,15 +27,14 @@ namespace C18_Ex05
         private BoardLogic m_BoardLogic;
         private Player[] m_Players = new Player[2];
         private Label[] m_PlayerNamesLabels = new Label[2];
-        private static int s_NumOfMoves = 0;
-        
+
         public FormBoard(int i_NumOfCols, int i_NumOfRows, string i_Player1Name, string i_Player2Name)
         {
             for (int i = 0; i < m_Players.Length; i++)
             {
                 if (i == 0)
                 {
-                    m_Players[i] = new Player(i_Player1Name,k_XSign);
+                    m_Players[i] = new Player(i_Player1Name, k_XSign);
                 }
                 else
                 {
@@ -42,8 +42,8 @@ namespace C18_Ex05
                 }
             }
 
-            m_CurrentXSize = k_XStartLocation + (i_NumOfCols+1) * (k_ButtonSize + k_GapBetweenCells);
-            m_CurrentYSize = k_YStartLocation + (i_NumOfRows+2) * (k_ButtonSize + k_GapBetweenCells);
+            m_CurrentXSize = k_XStartLocation + ((i_NumOfCols + 1) * (k_ButtonSize + k_GapBetweenCells));
+            m_CurrentYSize = k_YStartLocation + ((i_NumOfRows + 2) * (k_ButtonSize + k_GapBetweenCells));
             m_CellButtons = new Button[i_NumOfRows, i_NumOfCols];
             m_BoardLogic = new BoardLogic(i_NumOfCols, i_NumOfRows, m_CellButtons);
             InitGameBoard();
@@ -51,21 +51,22 @@ namespace C18_Ex05
             AddPlayersLabels();
             InitializeComponent();
         }
+
         private void InitGameBoard()
         {
             int xPosition = k_XStartLocation;
-            int yPosition =k_YStartLocation + k_GapBetweenCells + k_ButtonSize;
-            
+            int yPosition = k_YStartLocation + k_GapBetweenCells + k_ButtonSize;
             initClickAbleButtons();
             for (int currRowNum = 0; currRowNum < m_BoardLogic.NumOfRows; currRowNum++)
             {
                 for (int currColNum = 0; currColNum < m_BoardLogic.NumOfCols; currColNum++)
                 {
                     Button cellButton = new Button();
-                    cellButton.Name = String.Format("{0},{1}", currRowNum, currColNum);
+                    cellButton.Name = string.Format("{0},{1}", currRowNum, currColNum);
                     cellButton.Size = new Size(k_ButtonSize, k_ButtonSize);
                     cellButton.Location = new Point(xPosition, yPosition);
-           
+                    cellButton.TextChanged += CellButtonTextChanged;
+                    cellButton.BackColorChanged += CellButtonTextChanged;
                     m_CellButtons[currRowNum, currColNum] = cellButton;
                     xPosition += k_ButtonSize + k_GapBetweenCells;
                     Controls.Add(cellButton);
@@ -75,13 +76,20 @@ namespace C18_Ex05
                 yPosition += k_ButtonSize + k_GapBetweenCells;
             }
         }
+
+        private void CellButtonTextChanged(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
+
         private void UpdatePlayerLabels()
         {
-            for(int i=0;i<m_PlayerNamesLabels.Length;i++)
+            for (int i = 0; i < m_PlayerNamesLabels.Length; i++) 
             {
                 m_PlayerNamesLabels[i].Text = string.Format("{0}: {1}", m_Players[i].PlayerName, m_Players[i].Points);
             }
         }
+
         private void AddPlayersLabels()
         {
             const int heightSize = 15;
@@ -92,28 +100,29 @@ namespace C18_Ex05
                 m_PlayerNamesLabels[i].Text = string.Format("{0}: {1}", m_Players[i].PlayerName, m_Players[i].Points);
                 m_PlayerNamesLabels[i].AutoSize = true;
                 m_PlayerNamesLabels[i].Size = new Size(widthSize, heightSize);
-                if(i==0)
+                if (i == 0) 
                 {
-                    m_PlayerNamesLabels[i].Location = new Point(m_CurrentXSize / 2 - m_CurrentXSize / 4, m_CurrentYSize - k_ButtonSize / 2);
+                    m_PlayerNamesLabels[i].Location = new Point((m_CurrentXSize / 2) - (m_CurrentXSize / 4), m_CurrentYSize - (k_ButtonSize / 2));
                 }
                 else
                 {
-                    m_PlayerNamesLabels[i].Location = new Point(m_CurrentXSize / 2, m_CurrentYSize - k_ButtonSize / 2);
+                    m_PlayerNamesLabels[i].Location = new Point(m_CurrentXSize / 2, m_CurrentYSize - (k_ButtonSize / 2));
                 }
+
                 Controls.Add(m_PlayerNamesLabels[i]);
             }
-            m_CurrentYSize += k_ButtonSize;
-                    
+
+            m_CurrentYSize += k_ButtonSize;              
         }
+
         private void initClickAbleButtons()
         {
-
             int xLocation = k_XStartLocation;
             m_ClickAbleButtons = new List<Button>();
             for (int currColNum = 0; currColNum < m_BoardLogic.NumOfCols; currColNum++)
             {
                 Button smallCellButton = new Button();
-                smallCellButton.Name = String.Format("clickAbleCell{0}", currColNum);
+                smallCellButton.Name = string.Format("clickAbleCell{0}", currColNum);
                 smallCellButton.Size = new Size(k_ButtonSize, k_ButtonSize / 2);
                 smallCellButton.Location = new Point(xLocation, k_YStartLocation);
                 smallCellButton.Text = string.Format("{0}", currColNum + 1);
@@ -121,9 +130,10 @@ namespace C18_Ex05
                 smallCellButton.Click += CellButtonClickAble;
                 m_ClickAbleButtons.Add(smallCellButton);
                 xLocation += k_ButtonSize + k_GapBetweenCells;
-                Controls.Add(smallCellButton);
+                Controls.Add(smallCellButton);             
             }
         }
+
         private void CellButtonClickAble(object sender, EventArgs e)
         {
             int colToAddSign = 0;
@@ -139,9 +149,8 @@ namespace C18_Ex05
                 RunHumanVSHuman(colToAddSign);
                 s_NumOfMoves += 1;
             }
-            Refresh();
-         
-            if (m_Winner!=0)
+
+            if (m_Winner != 0) 
             {
                 m_Players[m_Winner - 1].Points += 1;
                 
@@ -149,9 +158,9 @@ namespace C18_Ex05
             }
             else if(m_BoardLogic.IsFullBoard())
             {
-               
                 ShowTieMessage(ref messageBoxResult);
             }
+
             if(messageBoxResult == DialogResult.No)
             {
                 Close();
@@ -161,27 +170,30 @@ namespace C18_Ex05
                 m_BoardLogic.ClearBoard();
                 UpdatePlayerLabels();
                 m_Winner = 0;
-                Refresh();
             }
         }
+
         private void ShowTieMessage(ref DialogResult io_UserChoice)
         {
             string message = string.Format("Tie!!{0}Anoter Round?", Environment.NewLine);
-            io_UserChoice = MessageBox.Show(message, "A Tie!",MessageBoxButtons.YesNo);
+            io_UserChoice = MessageBox.Show(message, "A Tie!", MessageBoxButtons.YesNo);
         }
+
         private void ShowWinnerMessage(ref DialogResult io_UserChoice)
         {
-            string message = string.Format("{0} Won!!{1}Anoter Round?", m_Players[m_Winner-1].PlayerName, Environment.NewLine);
-            io_UserChoice = MessageBox.Show(message, "A Win!",MessageBoxButtons.YesNo);
+            string message = string.Format("{0} Won!!{1}Anoter Round?", m_Players[m_Winner - 1].PlayerName, Environment.NewLine);
+            io_UserChoice = MessageBox.Show(message, "A Win!", MessageBoxButtons.YesNo);
         }
+
         private void RunHumanVSHuman(int i_Move)
         {
             m_BoardLogic.GameBoardUpdateAndCheckIfFull(i_Move, m_Players[s_NumOfMoves % 2].Sign);
-            if(m_BoardLogic.IsThereWinner(m_Players[s_NumOfMoves%2].Sign))
+            if (m_BoardLogic.IsThereWinner(m_Players[s_NumOfMoves % 2].Sign)) 
             {
-                m_Winner = s_NumOfMoves % 2 + 1;
+                m_Winner = (s_NumOfMoves % 2) + 1;
             }
         }
+
         private void RunComputerVSHuman(int i_Move)
         {
             int computerMove = 0;
@@ -200,6 +212,7 @@ namespace C18_Ex05
                 }
             }
         }
+
         private void FormBoard_Load(object sender, EventArgs e)
         {
             this.Size = new Size(m_CurrentXSize, m_CurrentYSize);

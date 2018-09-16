@@ -1,6 +1,6 @@
 ﻿namespace C18_Ex05
 {
-    partial class FormBoard
+    public partial class FormBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
